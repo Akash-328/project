@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Events</title>
+    <style>
+        .img-thumbnail {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Events</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Add an Event</h2>
+        <form action="{{ url_for('add_event') }}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Event Title</label>
+                <input type="text" class="form-control" name="title" id="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="disc" class="form-label">Event Description</label>
+                <input type="text" class="form-control" name="disc" id="disc" required>
+            </div>
+            <div class="mb-3">
+                <label for="reg_start_date" class="form-label">Registration Start Date</label>
+                <input type="datetime-local" class="form-control" name="reg_start_date" id="reg_start_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="reg_end_date" class="form-label">Registration End Date</label>
+                <input type="datetime-local" class="form-control" name="reg_end_date" id="reg_end_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="event_start_date" class="form-label">Event Start Date</label>
+                <input type="datetime-local" class="form-control" name="event_start_date" id="event_start_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="event_end_date" class="form-label">Event End Date</label>
+                <input type="datetime-local" class="form-control" name="event_end_date" id="event_end_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Event Image</label>
+                <input type="file" class="form-control" name="image" id="image">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+    <div class="container my-5">
+        <h2>Notice Board</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">S_no</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Reg. Start Date</th>
+                    <th scope="col">Reg. End Date</th>
+                    <th scope="col">Event Start Date</th>
+                    <th scope="col">Event End Date</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in allEvent %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.disc }}</td>
+                    <td>{{ event.date_created }}</td>
+                    <td>{{ event.reg_start_date }}</td>
+                    <td>{{ event.reg_end_date }}</td>
+                    <td>{{ event.event_start_date }}</td>
+                    <td>{{ event.event_end_date }}</td>
+                    <td>
+                        {% if event.image_filename %}
+                        <!-- Image Thumbnail with Modal Trigger -->
+                        <a href="{{ url_for('static', filename='uploads/' + event.image_filename) }}" data-bs-toggle="modal" data-bs-target="#imageModal">
+                            <img src="{{ url_for('static', filename='uploads/' + event.image_filename) }}" width="100" class="img-thumbnail">
+                        </a>
+                        {% else %}
+                            No image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/delete/{{ event.sno }}" type="button" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Enlarged Image -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="modalImage" src="" class="img-fluid" alt="Event Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMF5VWN0v9t7Y6cbA2n5SZ6Kp4xO2eNjv7TanA1ztP5Vx1pDblFJv0Glslb" crossorigin="anonymous">
+    </script>
+
+    <!-- Custom Script to Handle Image Modal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var imageModal = document.getElementById('imageModal');
+            imageModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var imageUrl = button.getAttribute('href'); // Get the image URL from the href
+                var modalImage = imageModal.querySelector('#modalImage');
+                modalImage.src = imageUrl; // Set the modal image src
+            });
+        });
+    </script>
+</body>
+</html>

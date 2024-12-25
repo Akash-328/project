@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Admin Dashboard</h1>
+        <h2 class="text-center">Pending Admin Approval</h2>
+
+        {% if pending_users %}
+            <ul>
+                {% for user in pending_users %}
+                <li class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.username }}</h5>
+                        <p class="card-text">{{ user.email }}</p>
+                        <a href="{{ url_for('approve_user', user_id=user.id) }}" class="btn btn-danger">Approve</a>
+                        <a href="{{ url_for('deny_user', user_id=user.id) }}" class="btn btn-danger">Deny</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No users are pending admin approval at the moment.</p>
+        {% endif %}
+
+        <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* styles.css */
+
+/* Card customizations */
+.card {
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar styling */
+.bg-dark {
+    background-color: #2c3e50 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+ul li a {
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+ul li a:hover {
+    background-color: #34495e;
+}
+
+/* Header Styling */
+h2.text-center {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Image Styling */
+.event-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Event Card Text */
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Buttons and Links */
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.title }} - Event Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">{{ event.title }}</h2>
+        <p class="lead">{{ event.disc }}</p>
+        <p><strong>Registration Period:</strong> {{ event.reg_start_date.strftime('%B %d, %Y at %H:%M') }} to {{ event.reg_end_date.strftime('%B %d, %Y at %H:%M') }}</p>
+        <p><strong>Event Dates:</strong> {{ event.event_start_date.strftime('%B %d, %Y at %H:%M') }} to {{ event.event_end_date.strftime('%B %d, %Y at %H:%M') }}</p>
+
+        {% if event.image_filename %}
+            <img src="{{ url_for('static', filename='uploads/' + event.image_filename) }}" class="img-fluid event-img" alt="{{ event.title }}">
+        {% else %}
+            <img src="https://via.placeholder.com/150" class="img-fluid event-img" alt="Event Image">
+        {% endif %}
+    </div>
+</body>
+</html>

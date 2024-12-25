@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Club - Games</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://img.freepik.com/free-photo/runway-stadium_1417-1665.jpg?semt=ais_hybrid');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .heading-container {
+        position: absolute; /* Position it at the top */
+        top: 20px; /* Distance from the top */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust the centering */
+        padding: 20px 40px;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        backdrop-filter: blur(10px); /* Apply blur effect to background */
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0;
+      color: rgb(17, 236, 101);
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns */
+      gap: 20px; /* Space between items */
+      width: 80%; /* Restrict the width for centering */
+      margin: 80px auto; /* Center the grid and add space from top */
+      padding: 20px 0;
+    }
+
+    .game-item {
+      text-align: center;
+      padding: 10px;
+      border: 2px solid transparent; /* Initially, no border */
+      border-radius: 8px; /* Slight rounding of the corners */
+      transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition for border color */
+    }
+
+    a {
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      display: block; /* Makes the entire area clickable */
+      transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    }
+
+    a:hover {
+      transform: scale(1.2); /* Slightly increase size */
+      color: rgb(39, 155, 157);
+    }
+
+    .game-item:hover {
+      background-color: #0c0c0c; /* Add a solid grey background color */
+      border-color: #808080; /* Add a grey border on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="heading-container">
+    <h1>Sports Club</h1>
+  </div>
+  <div class="game-list">
+    <div class="game-item"><a href="https://www.minecraft.net/" target="_blank">Basketball</a></div>
+    <div class="game-item"><a href="https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/" target="_blank">Volleyball</a></div>
+    <div class="game-item"><a href="https://www.leagueoflegends.com/" target="_blank">Badminton</a></div>
+    <div class="game-item"><a href="https://www.fortnite.com/" target="_blank">Cricket</a></div>
+    <div class="game-item"><a href="https://www.pubg.com/" target="_blank">Chess</a></div>
+    <div class="game-item"><a href="https://www.fortnite.com/" target="_blank">Football</a></div>
+  </div>
+</body>
+</html>
